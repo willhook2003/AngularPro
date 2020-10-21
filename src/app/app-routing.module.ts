@@ -1,32 +1,34 @@
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { Graficas1Component } from './pages/graficas1/graficas1.component';
-import { PagesComponent } from './pages/pages.component';
-import { ProgressComponent } from './pages/progress/progress.component';
-import { NopagesfoundComponent } from './shared/nopagesfound/nopagesfound.component';
+
+// Modulos
+import { PagesRoutingModule } from './pages/pages.routing';
+import { AuthRoutingModule } from './auth/auth.routing';
+
+import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+
 
 const routes: Routes = [
-  { path: '', component: PagesComponent,
-  children: [
-  { path:'dashboard', component: DashboardComponent },
-  { path: 'progress', component: ProgressComponent },
-  { path: 'graficas1', component: Graficas1Component },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }]
-  },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: '**', component: NopagesfoundComponent },
-]
+  // Se acostumbra a dejar comentario como pequeña documentacion
+  //asi si implementamos mas rutas, ya sabemos cuales estan tomadas o 
+  // se deseamos armar rutas sabes de donde provienen
+  // path: '/dashboard' PagesRouting => arma la ruta principal en PagesRputing desprendiendo las hijas
+  // path: '/auth' AuthRouting
+  // path: '/medicos' MedicosRouting
+  // path: '/compras' ComprasRouting
+
+  // path de ruta por default es el de abajo y el que sigue es si se ingresa una ruta que no exista
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '**', component: NopagefoundComponent },
+];
+
 
 
 @NgModule({
-  declarations: [],
   imports: [
-    RouterModule.forRoot( routes )
+    RouterModule.forRoot( routes ),
+    PagesRoutingModule,
+    AuthRoutingModule
   ],
   exports: [ RouterModule ]
 })

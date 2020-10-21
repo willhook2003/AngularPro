@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styles: [
-  ],
+  ]
 })
 export class BreadcrumbsComponent implements OnInit {
 
